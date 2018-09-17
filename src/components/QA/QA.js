@@ -194,7 +194,7 @@ class QA extends Component {
 
         var name = QuizName.toUpperCase();
         return (
-            <div>
+            <div className="Quiz">
                 <h1 align="center">{name}</h1>
                 <br />
                 <br />
@@ -202,13 +202,13 @@ class QA extends Component {
                 <ol>
                     {crrQuiz.map((item, index) => {
                         return (
-                            <li key={index}>
+                            <li className="Ques" key={index}>
                                 <h3>{item.Q}</h3>
                                 <br />
                                 {
                                     item.opt.map((option, index2) => {
                                         return (
-                                            <div key={index2}>
+                                            <div className="radio" key={index2}>
                                                 <input type="radio" id={option} name={index} value={option} />
                                                 <label htmlFor={option}>{option}</label>
                                             </div>
@@ -236,7 +236,7 @@ class QA extends Component {
         const item = beginQuiz ? this.Quiz() : this.renderlist();
         return (
             <div>
-                <button onClick={()=>this.logOut()}>LogOut</button>
+                <button className="logOut" onClick={()=>this.logOut()}>LogOut</button>
                 {item}
             </div>
         )

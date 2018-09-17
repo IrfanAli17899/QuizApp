@@ -56,7 +56,7 @@ class Login extends Component {
                     <input type="text" name="email" id="email" placeholder="Email Address" autoComplete="on" />
                     <br /><i className="fa fa-lock"></i>
                     <input type="password" name="password" placeholder="Password" id="Password"  />
-                   <br/> <a href="JavaScript:void(0)" onClick={NotHaveCred}>SignUp</a>
+                   <br/> <a href="JavaScript:void(0)" onClick={NotHaveCred}><i>Not Registered</i></a>
                     <br /><input type="submit" value="LogIn" /></div>
                 <div className="bottom"><i> All Rights Reservers To Irfan Ali</i></div>
             </form>

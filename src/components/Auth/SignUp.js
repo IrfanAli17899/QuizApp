@@ -84,7 +84,7 @@ class SignUp extends Component {
                         <input type="email" name="email" id="email" placeholder="Email Address" autoComplete="on"  />
                         <br /><i className="fa fa-lock"></i>
                         <input type="password" name="password" placeholder="Password" id="Password"  />
-                        <br /> <a href="JavaScript:void(0)" onClick={HaveCred}>LogIn</a>
+                        <br /> <a href="JavaScript:void(0)" onClick={HaveCred}><i>Already Have An Account</i></a>
                         <br /><input type="submit" value="SignUp" /></div>
                     <div className="bottom"><i> All Rights Reservers To Irfan Ali</i></div>
                 </form>

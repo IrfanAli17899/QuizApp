@@ -121,3 +121,37 @@ ol.quizzes {
     }
 
   }
+
+  .logOut{
+    float: right;
+    width: 100px;
+    height:30px;
+    border: 1px solid rgb(231, 231, 231);
+    color: whitesmoke;
+    background: rgb(0, 201, 127);
+
+    
+  }
+  .logOut:hover{
+    background: rgb(0, 206, 129);
+    cursor: pointer;
+  }
+ .Quiz{
+   color: #3b3b3b;
+ }
+  .Ques h3{
+    /* background: red; */
+    background: rgb(240, 245, 247);
+    border: 1px solid rgb(199, 199, 199);
+    border-radius:2px;
+    padding:10px; 
+  }
+  input[type=radio]{
+    margin:0px 10px;
+  }
+  .radio{
+    padding:10px;
+  }
+  .radio label{
+    margin: 0px 5px;
+  }
