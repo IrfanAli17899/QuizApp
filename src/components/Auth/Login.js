@@ -36,7 +36,7 @@ class Login extends Component {
             })
             return;
         }
-        localStorage.setItem("crrUser",JSON.stringify(form.get("email")));
+        localStorage.setItem("crrUser",JSON.stringify(crrUser[0]));
         swal({
             title:"Successfull",
             icon:"success"

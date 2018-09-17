@@ -1,0 +1,123 @@
+ol.quizzes {
+    text-align: center;
+    width: 500px;
+    position: absolute;
+    top: 50%;
+    left: 49%;
+    transform: translate(-50%, -50%);
+  }
+
+  ol.quizzes {
+    border: 1px solid rgb(199, 199, 199);
+    margin: auto;
+    width: 500px;
+    -webkit-box-shadow: 0px 0px 20px #d4d4d4;
+    box-shadow: 0px 0px 20px #d4d4d4;
+    padding: 0;
+    list-style: none;
+    text-align: center;
+    background: white;
+    position: absolute;
+    top: 50%;
+    left: 49%;
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+  }
+
+  ol.quizzes h1 {
+    font-weight: 500px;
+    padding-bottom: 10px;
+    color: #3b3b3b;
+    border-bottom: 1px solid rgb(199, 199, 199);
+
+  }
+
+  ol.quizzes li {
+    padding-bottom: 40px;
+    border-bottom: 1px solid rgb(199, 199, 199);
+  }
+
+  ol.quizzes li:nth-child(3) {
+    padding-top: 10px;
+  }
+
+  ol.quizzes li:nth-child(4) {
+    padding-top: 10px;
+    padding-bottom: 20px;
+  }
+
+
+  ol.quizzes li button {
+    width: 200px;
+    text-align: center;
+    padding: 5px;
+    width: 50%;
+    color: aliceblue;
+    background: rgb(0, 206, 129);
+    border: 1px solid rgb(230, 230, 230);
+    font-size: 18px;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    left: 0.8px;
+  }
+
+  ol.quizzes li button:hover {
+    cursor: pointer;
+    background: rgb(0, 201, 127);
+  }
+
+  ol.quizzes li span {
+    display: block;
+    margin: 10px 0px;
+
+  }
+
+  .bottom {
+    border-top: 1px solid rgb(199, 199, 199);
+    min-height: 30px;
+    background: rgb(236, 240, 241);
+    margin-top: 15px;
+    text-align: center;
+    padding: 10px 0px;
+    font-size: 16px;
+    color: #3b3b3b
+  }
+
+  ol.quizzes li:nth-child(4) {
+    border: none;
+  }
+
+  @media screen and (max-width:436px) {
+    ol.quizzes {
+      width: 100%;
+      margin: 0;
+      height: 100%;
+      top: 0;
+      left: 0;
+      -webkit-transform: translate(0, 0);
+      -ms-transform: translate(0, 0);
+      transform: translate(0, 0);
+      right: -1px;
+      border: none;
+
+    }
+
+    ol.quizzes li {
+      position: relative;
+      margin-top: 10%;
+    }
+
+
+    .bottom {
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+    }
+
+
+    ol.quizzes li button {
+      width: 60%;
+    }
+
+  }

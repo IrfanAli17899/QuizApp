@@ -54,7 +54,12 @@ class SignUp extends Component {
         users.push({
             name:form.get("name"),
             email:form.get("email"),
-            password:form.get("password")
+            password:form.get("password"),
+            quizzes:{
+                html:false,
+                css:false,
+                js:false
+            }
         })
         localStorage.setItem("users",JSON.stringify(users));
         swal({
