@@ -6,56 +6,56 @@ class QA extends Component {
         super();
         var crrUser = JSON.parse(localStorage.getItem("crrUser"));
         this.state = {
-            Ques:{
-                html:[
-                {
-                    Q:"Which Html Tag Is Use To Break A Line ??",
-                    opt:["<br/>","<hr/>","<marquee>","<a>"],
-                    ans:"<br/>"
-                },{
-                    Q:"Html Is A ______ Language ??",
-                    opt:["programming language","Markup language","Native Language","National language"],
-                    ans:"Markup language"
-                },
-                {
-                    Q:"What Html Attribute Makes the Element Unique ??",
-                    opt:["id","class","href","value"],
-                    ans:"id"
-                }],
-                css:[
+            Ques: {
+                html: [
                     {
-                        Q:"Which Of The Following can Be Use To Specify Width ??",
-                        opt:["px","xp","cp","df"],
-                        ans:"px"
+                        Q: "Which Html Tag Is Use To Break A Line ??",
+                        opt: ["<br/>", "<hr/>", "<marquee>", "<a>"],
+                        ans: "<br/>"
+                    }, {
+                        Q: "Html Is A ______ Language ??",
+                        opt: ["programming language", "Markup language", "Native Language", "National language"],
+                        ans: "Markup language"
                     },
                     {
-                        Q:"What is The Hex value Of Color Black ??",
-                        opt:["#000000","#ffffff","#f3f3f3","#gfhtjs"],
-                        ans:"#000000"
-                    },
-                    {
-                        Q:"Which property Is Use to Align Text ??",
-                        opt:["font-align","text-align","text-float","font-resize"],
-                        ans:"text-align"
+                        Q: "What Html Attribute Makes the Element Unique ??",
+                        opt: ["id", "class", "href", "value"],
+                        ans: "id"
                     }],
-                js:[
+                css: [
                     {
-                        Q:"The Output From A Prompt Has A type of ??",
-                        opt:["String","Boolean","Undefined","Object"],
-                        ans:"String"
+                        Q: "Which Of The Following can Be Use To Specify Width ??",
+                        opt: ["px", "xp", "cp", "df"],
+                        ans: "px"
                     },
                     {
-                        Q:"How Can We Alert A User,Using ??",
-                        opt:["prompt","alert","console.log()","then"],
-                        ans:"alert"
-                        
+                        Q: "What is The Hex value Of Color Black ??",
+                        opt: ["#000000", "#ffffff", "#f3f3f3", "#gfhtjs"],
+                        ans: "#000000"
                     },
                     {
-                        Q:"What Is Use To Convet A String To A Number , From Following ??",
-                        opt:["toDateString()","toTimeString()","Number()","!Number"],
-                        ans:"Number()"
+                        Q: "Which property Is Use to Align Text ??",
+                        opt: ["font-align", "text-align", "text-float", "font-resize"],
+                        ans: "text-align"
                     }],
-                
+                js: [
+                    {
+                        Q: "The Output From A Prompt Has A type of ??",
+                        opt: ["String", "Boolean", "Undefined", "Object"],
+                        ans: "String"
+                    },
+                    {
+                        Q: "How Can We Alert A User,Using ??",
+                        opt: ["prompt", "alert", "console.log()", "then"],
+                        ans: "alert"
+
+                    },
+                    {
+                        Q: "What Is Use To Convet A String To A Number , From Following ??",
+                        opt: ["toDateString()", "toTimeString()", "Number()", "!Number"],
+                        ans: "Number()"
+                    }],
+
             },
             beginQuiz: false,
             crrUser
@@ -86,30 +86,159 @@ class QA extends Component {
     }
 
     StartQuiz(name) {
-        const { crrUser } = this.state;
+        const { crrUser, Ques } = this.state;
         for (var i in crrUser.quizzes) {
             if (name === i) {
                 if (crrUser.quizzes[i]) {
-                    swal({
-                        title: "You have Given The Test"
-                    })
-                    return;
+                    for (var j in crrUser.results) {
+                        if (crrUser.results[j].QuizName === name) {
+                            swal({
+                                title: crrUser.results[j].status,
+                                text: crrUser.results[j].result,
+                                icon: crrUser.results[j].icon,
+                            })
+                            return;
+                        }
+                    }
                 }
-                this.setState({
-                    beginQuiz: true,
-                    QuizName: name
+                for (var j in Ques) {
+                    if (j === name) {
+                        swal({
+                           title:"Best Of Your Luck",
+                           text:`Total Questions Are ${Ques[j].length} Each Carry Equal Marks` 
+                        })
+                        this.setState({
+                            beginQuiz: true,
+                            QuizName: name,
+                            crrQuiz: Ques[j]
+                        })
+                    }
+                }
+
+            }
+        }
+    }
+
+    createResult() {
+        let { crrQuiz, crrUser, QuizName } = this.state;
+        let users = JSON.parse(localStorage.getItem("users"))
+        var score = 0;
+        for (var index in crrQuiz) {
+            var opt = document.getElementsByName(index);
+            var found = false;
+            for (var i in opt) {
+                if (opt[i].checked) {
+                    found = true;
+                    if (opt[i].value === crrQuiz[index].ans) {
+                        score += 4;
+                        break;
+                    }
+                }
+            }
+            if (!found) {
+                swal({
+                    title: "Answer All Questions",
+                    icon: "error"
                 })
+                return;
             }
         }
 
+        var rightAns = score / 4;
+        var wrongAns = crrQuiz.length - rightAns;
+        var per = (score / 12) * 100
+        var result = `Out Of ${crrQuiz.length} Answered ${rightAns} Correctly , ${wrongAns} Wrong Answered Your Percentage Is ${per}%`;
+        var status = rightAns < 2 ? "Fail" : "Pass"
+        var icon = rightAns < 2 ? "error" : "success"
+        for (let i in crrUser.quizzes) {
+            if (i === QuizName) {
+                crrUser.quizzes[i] = true;
+                crrUser.results.push({
+                    status,
+                    result,
+                    icon,
+                    QuizName
+                })
+            }
+        }
+        for (var j in users) {
+            if (users[j].email === crrUser.email) {
+                for (let i in users[j].quizzes) {
+                    if (i === QuizName) {
+                        users[j].quizzes[i] = true;
+                        users[j].results.push({
+                            status,
+                            result,
+                            icon,
+                            QuizName
+                        })
+                    }
+                }
+            }
+        }
+        localStorage.setItem("users", JSON.stringify(users));
+        localStorage.setItem("crrUser", JSON.stringify(crrUser))
+        swal({
+            title: status,
+            text: result,
+            icon
+        })
+        this.setState({
+            beginQuiz: false
+        })
 
     }
 
-    render() {
-        const { beginQuiz, QuizName } = this.state;
-        const item = beginQuiz ? this.Quiz(QuizName) : this.renderlist();
+    Quiz() {
+        const { QuizName, crrQuiz } = this.state;
+
+        var name = QuizName.toUpperCase();
         return (
-            item
+            <div>
+                <h1 align="center">{name}</h1>
+                <br />
+                <br />
+                <br />
+                <ol>
+                    {crrQuiz.map((item, index) => {
+                        return (
+                            <li key={index}>
+                                <h3>{item.Q}</h3>
+                                <br />
+                                {
+                                    item.opt.map((option, index2) => {
+                                        return (
+                                            <div key={index2}>
+                                                <input type="radio" id={option} name={index} value={option} />
+                                                <label htmlFor={option}>{option}</label>
+                                            </div>
+                                        )
+                                    })
+                                }
+                            </li>
+                        )
+                    })}
+
+                </ol>
+                <button onClick={() => this.createResult()}>Submit</button>
+            </div>
+        )
+
+
+    }
+    logOut(){
+        localStorage.removeItem("crrUser");
+        window.location.reload()
+    }
+
+    render() {
+        const { beginQuiz } = this.state;
+        const item = beginQuiz ? this.Quiz() : this.renderlist();
+        return (
+            <div>
+                <button onClick={()=>this.logOut()}>LogOut</button>
+                {item}
+            </div>
         )
     }
 }

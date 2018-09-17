@@ -59,7 +59,8 @@ class SignUp extends Component {
                 html:false,
                 css:false,
                 js:false
-            }
+            },
+            results:[]
         })
         localStorage.setItem("users",JSON.stringify(users));
         swal({
