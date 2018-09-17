@@ -220,7 +220,7 @@ class QA extends Component {
                     })}
 
                 </ol>
-                <button onClick={() => this.createResult()}>Submit</button>
+                <button className="Submit" onClick={() => this.createResult()}>Submit</button>
             </div>
         )
 

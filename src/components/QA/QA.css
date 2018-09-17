@@ -155,3 +155,20 @@ ol.quizzes {
   .radio label{
     margin: 0px 5px;
   }
+  .Submit{
+    /* float: right; */
+    margin: auto;
+    margin-top:50px; 
+    display: block;
+    width: 100px;
+    height:30px;
+    border: 1px solid rgb(231, 231, 231);
+    color: whitesmoke;
+    background: rgb(0, 201, 127);
+
+    
+  }
+  .Submit:hover{
+    background: rgb(0, 206, 129);
+    cursor: pointer;
+  }
